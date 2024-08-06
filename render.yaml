@@ -10,9 +10,6 @@ services:
     envVars:
       - key: GF_SECURITY_ADMIN_PASSWORD
         value: "admin"
-    dockerfilePath: Dockerfile
-    build:
-      context: .
     ports:
       - port: 3000
         targetPort: 3000
@@ -21,13 +18,12 @@ services:
     name: promtail
     runtime: docker
     plan: free
-    envVars:
-      - key: LOKI_ADDR
-        value: "http://loki:3100/loki/api/v1/push"
-    dockerfilePath: Dockerfile
     build:
       context: ./promtail
       dockerfile: Dockerfile
+    envVars:
+      - key: LOKI_ADDR
+        value: "http://loki:3100/loki/api/v1/push"
     ports:
       - port: 9080
         targetPort: 9080
