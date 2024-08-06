@@ -14,6 +14,9 @@ RUN curl -L https://github.com/grafana/loki/releases/download/v2.9.0/promtail-li
     chmod +x /usr/local/bin/promtail && \
     rm promtail.zip
 
+# Crie o diretório de configuração
+RUN mkdir -p /etc/promtail
+
 # Copie o arquivo de configuração do Promtail
 COPY promtail-config.yml /etc/promtail/promtail-config.yml
 
