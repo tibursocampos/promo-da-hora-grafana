@@ -7,21 +7,18 @@ RUN apk add --no-cache \
     unzip \
     bash
 
-# Instale Promtail
-RUN curl -L https://github.com/grafana/loki/releases/download/v2.9.0/promtail-linux-amd64.zip -o promtail.zip && \
-    unzip promtail.zip && \
-    mv promtail-linux-amd64 /usr/local/bin/promtail && \
-    chmod +x /usr/local/bin/promtail && \
-    rm promtail.zip
-
 # Crie o diretório de configuração
 RUN mkdir -p /etc/promtail
 
 # Copie o arquivo de configuração do Promtail
-COPY /promtail/promtail-config.yml /etc/promtail/promtail-config.yml
+COPY promtail-config.yml /etc/promtail/promtail-config.yml
+
+# Copie o script de inicialização para o container
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Exponha a porta do Promtail
 EXPOSE 9080
 
-# Inicie o Promtail
-ENTRYPOINT ["/usr/local/bin/promtail", "-config.file=/etc/promtail/promtail-config.yml"]
+# Defina o script de inicialização como o ponto de entrada
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
