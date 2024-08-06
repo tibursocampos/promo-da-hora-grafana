@@ -15,8 +15,9 @@ else
   echo "Promtail encontrado."
 fi
 
-# Verifica se o binário do Promtail foi movido corretamente
+# Verifica o binário do Promtail
 ls -l /usr/local/bin/promtail
+file /usr/local/bin/promtail
 
-# Inicia o Promtail
+# Executa o Promtail
 exec /usr/local/bin/promtail -config.file=/etc/promtail/promtail-config.yml
