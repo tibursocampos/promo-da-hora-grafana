@@ -1,24 +1,20 @@
-# Use uma imagem base do Alpine Linux
 FROM alpine:latest
 
 # Instale dependências necessárias
-RUN apk add --no-cache \
-    curl \
-    unzip \
-    bash
+RUN apk add --no-cache curl unzip bash file
 
-# Crie o diretório de configuração do Promtail
+# Crie diretórios necessários
 RUN mkdir -p /etc/promtail
 
 # Copie o script de inicialização e o arquivo de configuração para o container
 COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY promtail/promtail-config.yml /etc/promtail/promtail-config.yml
 
-# Torne o script de inicialização executável
-RUN chmod +x /usr/local/bin/entrypoint.sh
+# Copie e renomeie o binário do promtail
+COPY promtail-linux-amd64 /usr/local/bin/promtail
 
-# Exponha a porta do Promtail
-EXPOSE 9080
+# Torne o script de inicialização e o binário do promtail executáveis
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/promtail
 
 # Defina o script de inicialização como o ponto de entrada
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
