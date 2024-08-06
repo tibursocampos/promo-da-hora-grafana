@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Verifica se o binário do Promtail está no local esperado
 if [ ! -f /usr/local/bin/promtail ]; then
@@ -21,7 +21,7 @@ fi
 # Verifica o binário do Promtail
 echo "listando arquivo /usr/local/bin/promtail"
 ls -l /usr/local/bin/promtail
-echo "verificando arquivo com utilitario file /usr/local/bin/promtail"
+echo "verificando arquivo com utilitário file /usr/local/bin/promtail"
 file /usr/local/bin/promtail
 
 # Executa o Promtail

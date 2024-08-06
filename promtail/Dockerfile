@@ -1,17 +1,24 @@
+# Use uma imagem base do Ubuntu
 FROM ubuntu:latest
 
 # Instale dependências necessárias
-RUN apt-get update && apt-get install -y curl unzip bash file
+RUN apt-get update && apt-get install -y \
+    curl \
+    unzip \
+    bash \
+    && rm -rf /var/lib/apt/lists/*
 
-# Crie diretórios necessários
+# Crie o diretório para o Promtail
 RUN mkdir -p /etc/promtail
 
-# Copie o script de inicialização e o arquivo de configuração para o container
+# Copie o script de inicialização para o contêiner
 COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Copie o arquivo de configuração do Promtail para o contêiner
 COPY promtail/promtail-config.yml /etc/promtail/promtail-config.yml
 
-# Torne o script de inicialização e o binário do promtail executáveis
-RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/promtail
+# Torne o script de inicialização executável
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Defina o script de inicialização como o ponto de entrada
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
