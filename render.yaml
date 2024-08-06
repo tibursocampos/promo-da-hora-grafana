@@ -7,9 +7,8 @@ services:
     envVars:
       - key: GF_SECURITY_ADMIN_PASSWORD
         value: "admin"
-    env:
-      - key: RENDER_EXTERNAL_HOSTNAME
-        value: grafana
+    buildCommand: ""
+    startCommand: ""
 
   - type: web
     name: promtail
@@ -18,6 +17,5 @@ services:
     envVars:
       - key: LOKI_ADDR
         value: "http://loki:3100/loki/api/v1/push"
-    env:
-      - key: RENDER_EXTERNAL_HOSTNAME
-        value: promtail
+    buildCommand: ""
+    startCommand: ""
