@@ -9,7 +9,6 @@ RUN mkdir -p /etc/promtail
 # Copie o script de inicialização e o arquivo de configuração para o container
 COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY promtail/promtail-config.yml /etc/promtail/promtail-config.yml
-COPY promtail-linux-amd64 /usr/local/bin/promtail
 
 # Torne o script de inicialização e o binário do promtail executáveis
 RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/promtail
