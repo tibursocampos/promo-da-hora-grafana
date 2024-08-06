@@ -7,8 +7,10 @@ services:
     envVars:
       - key: GF_SECURITY_ADMIN_PASSWORD
         value: "admin"
-    buildCommand: ./grafana
-    startCommand: grafana-server --config=/etc/grafana/grafana.ini
+    dockerfilePath: grafana/Dockerfile
+    envVars:
+      - key: GF_PATHS_CONFIG
+        value: "/etc/grafana/grafana.ini"
 
   - type: web
     name: promtail
@@ -17,5 +19,4 @@ services:
     envVars:
       - key: LOKI_ADDR
         value: "http://loki:3100/loki/api/v1/push"
-    buildCommand: ./promtail
-    startCommand: promtail -config.file=/etc/promtail/promtail-config.yml
+    dockerfilePath: promtail/Dockerfile
