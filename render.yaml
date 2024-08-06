@@ -4,26 +4,20 @@ services:
     name: grafana
     runtime: docker
     plan: free
-    build:
-      context: ./grafana
-      dockerfile: Dockerfile
     envVars:
       - key: GF_SECURITY_ADMIN_PASSWORD
         value: "admin"
-    ports:
-      - port: 3000
-        targetPort: 3000
+    env:
+      - key: RENDER_EXTERNAL_HOSTNAME
+        value: grafana
 
   - type: web
     name: promtail
     runtime: docker
     plan: free
-    build:
-      context: ./promtail
-      dockerfile: Dockerfile
     envVars:
       - key: LOKI_ADDR
         value: "http://loki:3100/loki/api/v1/push"
-    ports:
-      - port: 9080
-        targetPort: 9080
+    env:
+      - key: RENDER_EXTERNAL_HOSTNAME
+        value: promtail
