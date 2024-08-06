@@ -19,3 +19,12 @@ services:
       - key: LOKI_ADDR
         value: "http://loki:3100/loki/api/v1/push"
     dockerfilePath: /promtail/Dockerfile
+
+  - type: web
+    name: loki
+    runtime: docker
+    plan: free
+    dockerfilePath: /loki/Dockerfile
+    envVars:
+      - key: LOKI_CONFIG_PATH
+        value: "/etc/loki/loki-config.yml"
