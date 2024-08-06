@@ -7,10 +7,9 @@ services:
     envVars:
       - key: GF_SECURITY_ADMIN_PASSWORD
         value: "admin"
-    dockerfilePath: grafana/Dockerfile
-    envVars:
       - key: GF_PATHS_CONFIG
         value: "/etc/grafana/grafana.ini"
+    dockerfilePath: grafana/Dockerfile
 
   - type: web
     name: promtail
