@@ -11,8 +11,8 @@ RUN apk add --no-cache \
 RUN mkdir -p /etc/promtail
 
 # Copie o script de inicialização e o arquivo de configuração para o container
-COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY promtail/promtail-config.yml /etc/promtail/promtail-config.yml
+COPY /entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY /promtail-config.yml /etc/promtail/promtail-config.yml
 
 # Torne o script de inicialização executável
 RUN chmod +x /usr/local/bin/entrypoint.sh
