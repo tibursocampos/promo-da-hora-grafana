@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  loki:
+    image: grafana/loki:3.1.0
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/etc/loki
+
+  grafana:
+    build:
+      context: ./grafana
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "changeme"
+    depends_on:
+      - loki
+
+  promtail:
+    build:
+      context: ./promtail
+      dockerfile: Dockerfile
+    ports:
+      - "9080:9080"
+    volumes:
+      - /var/log:/var/log
+    depends_on:
+      - loki
+
+volumes:
+  loki_data:
