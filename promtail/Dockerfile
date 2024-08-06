@@ -18,7 +18,7 @@ RUN curl -L https://github.com/grafana/loki/releases/download/v2.9.0/promtail-li
 RUN mkdir -p /etc/promtail
 
 # Copie o arquivo de configuração do Promtail
-COPY promtail-config.yml /etc/promtail/promtail-config.yml
+COPY /promtail/promtail-config.yml /etc/promtail/promtail-config.yml
 
 # Exponha a porta do Promtail
 EXPOSE 9080

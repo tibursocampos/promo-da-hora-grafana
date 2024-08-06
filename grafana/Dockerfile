@@ -2,7 +2,7 @@
 FROM grafana/grafana:latest
 
 # Copie o arquivo de configuração do Grafana para o diretório correto
-COPY grafana.ini /etc/grafana/grafana.ini
+COPY /grafana/grafana.ini /etc/grafana/grafana.ini
 
 # Exponha a porta do Grafana (não obrigatório para o funcionamento, mas bom para documentação)
 EXPOSE 3000

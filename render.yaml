@@ -9,7 +9,7 @@ services:
         value: "admin"
       - key: GF_PATHS_CONFIG
         value: "/etc/grafana/grafana.ini"
-    dockerfilePath: grafana\Dockerfile
+    dockerfilePath: /grafana/Dockerfile
 
   - type: web
     name: promtail
@@ -18,4 +18,4 @@ services:
     envVars:
       - key: LOKI_ADDR
         value: "http://loki:3100/loki/api/v1/push"
-    dockerfilePath: promtail\Dockerfile
+    dockerfilePath: /promtail/Dockerfile
