@@ -11,8 +11,9 @@ COPY /loki/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Exiba o conteúdo e permissões do arquivo para depuração
 RUN ls -l /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Exponha a porta usada pelo Loki
+EXPOSE 3100
 
 # Defina o ponto de entrada
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
