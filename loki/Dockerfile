@@ -30,7 +30,7 @@ RUN make clean && make BUILD_IN_CONTAINER=false loki
 FROM gcr.io/distroless/base-nossl:debug
 
 COPY --from=build /src/loki/cmd/loki/loki /usr/bin/loki
-COPY /src/loki/cmd/loki/loki-docker-config.yaml /etc/loki/local-config.yaml
+COPY /loki/loki-docker-config.yml /etc/loki/local-config.yaml
 
 SHELL [ "/busybox/sh", "-c" ]
 
