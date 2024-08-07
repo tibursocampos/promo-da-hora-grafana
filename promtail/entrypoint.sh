@@ -24,5 +24,11 @@ ls -l /usr/local/bin/promtail
 echo "verificando arquivo com utilitário file /usr/local/bin/promtail"
 file /usr/local/bin/promtail
 
+# Verifica o diretório de posições
+echo "verificando diretório /mnt/data"
+ls -ld /mnt/data
+echo "verificando permissões do diretório /mnt/data"
+stat /mnt/data
+
 # Executa o Promtail
 exec /usr/local/bin/promtail -config.file=/etc/promtail/promtail-config.yml

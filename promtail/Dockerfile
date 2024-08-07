@@ -17,6 +17,13 @@ RUN mkdir -p /mnt/data
 # Defina permissões para o diretório de posições
 RUN chmod 755 /mnt/data
 
+# Baixe e instale o Promtail
+RUN curl -L https://github.com/grafana/loki/releases/download/v2.9.0/promtail-linux-amd64.zip -o promtail.zip \
+    && unzip promtail.zip -d /usr/local/bin/ \
+    && chmod +x /usr/local/bin/promtail-linux-amd64 \
+    && mv /usr/local/bin/promtail-linux-amd64 /usr/local/bin/promtail \
+    && rm promtail.zip
+
 # Copie o script de inicialização para o contêiner
 COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
 
