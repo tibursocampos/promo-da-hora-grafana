@@ -11,6 +11,12 @@ RUN apt-get update && apt-get install -y \
 # Crie o diretório para o Promtail
 RUN mkdir -p /etc/promtail
 
+# Crie um diretório para o Arquivo de Posições
+RUN mkdir -p /mnt/data
+
+# Defina permissões para o diretório de posições
+RUN chmod 755 /mnt/data
+
 # Copie o script de inicialização para o contêiner
 COPY promtail/entrypoint.sh /usr/local/bin/entrypoint.sh
 
