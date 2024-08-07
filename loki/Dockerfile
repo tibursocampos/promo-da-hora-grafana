@@ -1,6 +1,16 @@
-# Loki Dockerfile
 FROM grafana/loki:3.1.0
 
-COPY loki/loki-config.yml /etc/loki/loki-config.yml
+# Crie o diretório de configuração
+RUN mkdir -p /etc/loki
 
-CMD ["loki", "-config.file=/etc/loki/loki-config.yml"]
+# Copie o arquivo de configuração para o contêiner
+COPY loki-config.yml /etc/loki/loki-config.yml
+
+# Copie o script de entrada para o contêiner
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+# Exiba o conteúdo e permissões do arquivo para depuração
+RUN ls -l /usr/local/bin/entrypoint.sh
+
+# Defina o ponto de entrada
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
