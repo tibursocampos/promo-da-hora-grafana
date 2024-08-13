@@ -11,14 +11,14 @@ services:
         value: "/etc/grafana/grafana.ini"
     dockerfilePath: /grafana/Dockerfile
 
-  - type: web
-    name: promtail
-    runtime: docker
-    plan: free
-    envVars:
-      - key: LOKI_ADDR
-        value: "http://loki:3100/loki/api/v1/push"
-    dockerfilePath: /promtail/Dockerfile
+  # - type: web
+  #   name: promtail
+  #   runtime: docker
+  #   plan: free
+  #   envVars:
+  #     - key: LOKI_ADDR
+  #       value: "http://loki:3100/loki/api/v1/push"
+  #   dockerfilePath: /promtail/Dockerfile
 
   - type: web
     name: loki
